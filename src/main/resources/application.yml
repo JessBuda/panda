@@ -1,0 +1,44 @@
+server:
+  port: 8090
+spring:
+  redis:
+    host: 127.0.0.1
+    port: 6379
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://10.20.5.122:3306/test?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    username: root
+    password: Ehl@1234
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 20
+      idle-timeout: 25000
+      auto-commit: true
+      connection-test-query: SELECT 1
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+
+############ mybatis-plus配置 #############
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/*Mapper.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    banner: false
+    db-config:
+      # 主键类型 AUTO:数据库ID自增 NONE.未定义 INPUT.用户输入 ASSIGN_ID 整数值 ASSIGN_UUID UUID
+      id-type: AUTO
+      # 默认数据库表下划线命名
+      table-underline: true
+
+ehl:
+  config:
+    cross-origin:
+      enabled: true
+      allow-credentials: true
+      allowed-origins: "*"
+      allowed-headers: "*"
+      allowed-methods: "*"
+      max-age: 3600
